@@ -13,6 +13,7 @@
 - AES-GCM으로 암호화된 OpenAI Key(D1), 서버에서만 복호화, 연결 테스트
 - 비공개 R2 업로드/다운로드, 사용자 소유권 및 자료 접근 확인, 확장자/MIME/파일 시그니처/크기 제한
 - 서버측 관리자 권한, Origin 기반 CSRF 방어, SQL 바인딩, DOM textContent 기반 출력
+- 로고를 포함한 두 가지 UI(기존 / 건설인 AX), 관리자 시스템 설정에서 전체 적용 디자인 전환, 자체 생성 현장 이미지(WebP)와 모바일 대응
 
 ## 실행
 
@@ -53,13 +54,14 @@ npm run dev
 | `/api/admin/overview`, `/api/admin/users`, `/api/admin/users/:id/progress` | 운영 현황 |
 | `/api/admin/weeks`, `/api/admin/lessons`, `/api/admin/resources`, `/api/admin/assignments` | CMS (GET/POST/PUT) |
 | `/api/admin/reviews`, `/api/admin/reviews/:id/pass` · `/retry` · `/reevaluate` | 검수 |
+| `GET /api/theme`, `GET/PUT /api/admin/settings/theme` | 공개 디자인 조회 · 관리자 전용 UI 전환 |
 | `/api/admin/settings/ai` · `/test`, `/api/admin/settings/uploads` | 운영 설정 |
 
 API 응답은 `{ "ok": true, "data": ... }` 또는 `{ "ok": false, "error": { "code": ..., "message": ... } }`입니다. 쓰기 요청에는 동일 출처 Origin이 필요합니다.
 
 ## 데이터 모델과 흐름
 
-D1: `users`, `sessions`, `oauth_states`, `weeks`, `lessons`, `resources`, `assignments`, `assignment_rubrics`, `submissions`, `submission_files`, `files`, `evaluations`, `user_week_progress`, `app_settings`, `audit_logs`. R2는 원본 파일만 저장하며 공개 URL을 사용하지 않습니다. 파일 ID를 통한 읽기는 Worker가 소유권/주차 접근권한을 검사합니다. 주차의 **필수 과제 모두 PASS**하면 다음 주가 열립니다.
+D1: `users`, `sessions`, `oauth_states`, `weeks`, `lessons`, `resources`, `assignments`, `assignment_rubrics`, `submissions`, `submission_files`, `files`, `evaluations`, `user_week_progress`, `app_settings`, `audit_logs`. `app_settings.ui_theme`은 `ORIGINAL` 또는 `CONSTRUCTION`이며 관리자 → 시스템 설정 → 화면 디자인에서 변경합니다. 기본값은 `CONSTRUCTION`입니다. 이미지와 로고는 `public/images/`에 정적 파일로 포함합니다. R2는 제출/교육 원본 파일만 저장하며 공개 URL을 사용하지 않습니다. 파일 ID를 통한 읽기는 Worker가 소유권/주차 접근권한을 검사합니다. 주차의 **필수 과제 모두 PASS**하면 다음 주가 열립니다.
 
 ## 확인한 로컬 시나리오
 
