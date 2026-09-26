@@ -4,6 +4,6 @@
   "main": "src/worker.js",
   "compatibility_date": "2026-09-17",
   "assets": { "directory": "./public", "binding": "ASSETS", "run_worker_first": true, "html_handling": "none" },
-  "d1_databases": [{ "binding": "DB", "database_name": "construction-ai-native", "database_id": "00000000-0000-0000-0000-000000000000", "migrations_dir": "migrations" }],
+  "d1_databases": [{ "binding": "DB", "database_name": "construction-ai-native", "database_id": "f29c7e09-d2f7-4e9f-a0c3-ae6ff0f9e69d", "migrations_dir": "migrations" }],
   "r2_buckets": [{ "binding": "FILES", "bucket_name": "construction-ai-native-files" }]
 }

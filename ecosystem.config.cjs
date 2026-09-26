@@ -1,1 +1,0 @@
-module.exports = { apps: [{ name: 'construction-ai-native', script: 'npx', args: 'wrangler dev --local --ip 0.0.0.0 --port 3000', cwd: '/home/user/webapp', watch: false, env: { NODE_ENV: 'development' } }] }
