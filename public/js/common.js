@@ -3,7 +3,7 @@ export const el=(tag,attrs={},children=[])=>{const node=document.createElement(t
 export const clear=node=>node.replaceChildren();
 export const text=(selector,value)=>{$(selector).textContent=value??''};
 export const toolNames={GENERAL:'일반',CHATGPT_CODEX:'ChatGPT / Codex',CLAUDE_CODE:'Claude Code',GEMINI_ANTIGRAVITY:'Gemini / Antigravity'};
-export const states={LOCKED:'잠금',AVAILABLE:'시작 가능',IN_PROGRESS:'진행 중',SUBMITTED:'제출 완료',AI_REVIEW:'AI 평가 중',HUMAN_REVIEW:'관리자 검수 중',RETRY:'재도전',PASS:'PASS'};
+export const states={LOCKED:'잠금',AVAILABLE:'시작 가능',IN_PROGRESS:'진행 중',SUBMITTED:'제출 완료',AI_REVIEW:'AI 평가 중',HUMAN_REVIEW:'관리자 검수 중',RETRY:'재도전',PASS:'PASS',ADVICE_PENDING:'AI 안내 중',ADVICE_ERROR:'AI 안내 오류',COMPLETED:'학습 완료'};
 export const pill=(state)=>el('span',{class:'pill '+(state==='RETRY'||state==='HUMAN_REVIEW'?'warn':state==='LOCKED'?'neutral':''),text:states[state]||state});
 export const badge=(label)=>el('span',{class:'tag',text:label});
 export const link=(href,label,external=false)=>el('a',{href,class:'link',...(external?{target:'_blank',rel:'noopener noreferrer'}:{}),text:label});
