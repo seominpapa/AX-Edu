@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import worker from '../src/worker.js';
 
 const progressKey = 'ax-edu-tutorials-v1';
-const emptyProgress = () => ({ claude: [], codex: [] });
+const emptyProgress = () => ({ codex: [], claude: [], antigravity: [] });
 
 test('tutorials are public routes and do not need a session or database', async () => {
   const env = { ASSETS: { fetch: async request => new Response(new URL(request.url).pathname) } };
@@ -14,10 +14,10 @@ test('tutorials are public routes and do not need a session or database', async 
   }
 });
 
-test('both tracks cover the same seven lessons with practical exercises and official references', async () => {
+test('three ordered tracks cover the same seven lessons with practical exercises and official references', async () => {
   const { tracks, lessonIds } = await import('../public/js/tutorial-data.js');
   assert.deepEqual(lessonIds, ['setup', 'basics', 'workflow', 'extend', 'collaborate', 'security', 'recipes']);
-  assert.deepEqual(Object.keys(tracks).sort(), ['claude', 'codex']);
+  assert.deepEqual(Object.keys(tracks), ['codex', 'claude', 'antigravity']);
   for (const [trackId, track] of Object.entries(tracks)) {
     assert.ok(track.name.trim());
     assert.deepEqual(track.lessons.map(lesson => lesson.id), lessonIds);
@@ -42,7 +42,9 @@ test('both tracks cover the same seven lessons with practical exercises and offi
         assert.equal(url.protocol, 'https:');
         const official = trackId === 'claude'
           ? ['code.claude.com', 'docs.anthropic.com', 'claude.com', 'www.anthropic.com'].includes(url.hostname)
-          : ['learn.chatgpt.com', 'developers.openai.com', 'help.openai.com', 'openai.com', 'platform.openai.com'].includes(url.hostname)
+          : trackId === 'antigravity'
+            ? ['antigravity.google', 'support.google.com', 'ai.google.dev', 'developers.google.com', 'codelabs.developers.google.com'].includes(url.hostname)
+            : ['learn.chatgpt.com', 'developers.openai.com', 'help.openai.com', 'openai.com', 'platform.openai.com'].includes(url.hostname)
             || (url.hostname === 'github.com' && url.pathname.startsWith('/openai/'));
         assert.ok(official, `${message}: official source ${url.href}`);
       }
@@ -55,19 +57,22 @@ test('tutorial deep links select a valid track and recover from invalid fragment
   const { resolveTutorial } = await import('../public/js/tutorial-state.js');
   assert.deepEqual(resolveTutorial('#codex/workflow'), { track: 'codex', lesson: 'workflow' });
   assert.deepEqual(resolveTutorial('#claude/security'), { track: 'claude', lesson: 'security' });
+  assert.deepEqual(resolveTutorial('#antigravity/extend'), { track: 'antigravity', lesson: 'extend' });
   assert.deepEqual(resolveTutorial('#codex/missing'), { track: 'codex', lesson: 'setup' });
   for (const hash of ['', '#', '#missing/nope', '#%E0%A4%A', '#<script>/bad']) {
-    assert.deepEqual(resolveTutorial(hash), { track: 'claude', lesson: 'setup' });
+    assert.deepEqual(resolveTutorial(hash), { track: 'codex', lesson: 'setup' });
   }
 });
 
 test('stored tutorial progress is filtered to known lessons and remains separate by track', async () => {
-  const { readProgress } = await import('../public/js/tutorial-state.js');
+  const { readProgress, toggleComplete } = await import('../public/js/tutorial-state.js');
   const storage = { getItem(key) {
     assert.equal(key, progressKey);
     return JSON.stringify({ claude: ['setup', 'setup', 'missing', 2], codex: ['workflow'], unknown: ['security'] });
   } };
-  assert.deepEqual(readProgress(storage), { claude: ['setup'], codex: ['workflow'] });
+  const migrated = readProgress(storage);
+  assert.deepEqual(migrated, { claude: ['setup'], codex: ['workflow'], antigravity: [] });
+  assert.deepEqual(toggleComplete(migrated, 'antigravity', 'setup'), { claude: ['setup'], codex: ['workflow'], antigravity: ['setup'] });
 });
 
 test('missing, malformed and unavailable storage cannot prevent learning', async () => {

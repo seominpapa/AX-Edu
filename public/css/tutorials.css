@@ -34,7 +34,7 @@
 .tutorial-section-heading h2 { margin-bottom: 10px; font-size: 1.6rem; }
 .tutorial-section-heading p.muted { font-size: .83rem; margin-bottom: 0; line-height: 1.8; }
 .tutorial-verified { font-size: .7rem; color: var(--muted); white-space: nowrap; padding-bottom: 3px; }
-.tutorial-tracks { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; margin-bottom: 25px; }
+.tutorial-tracks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px; margin-bottom: 25px; }
 .tutorial-track { display: flex; align-items: center; gap: 14px; text-align: left; border: 1px solid var(--line); background: #fff; border-radius: 12px; padding: 18px 21px; color: var(--tutorial-navy); min-width: 0; }
 .tutorial-track.active { border: 2px solid var(--tutorial-orange); background: #fffaf5; padding: 17px 20px; }
 .tutorial-track:hover { border-color: var(--tutorial-orange); }
@@ -125,6 +125,7 @@
   .tutorial-track-count { display: none; }
 }
 @media (max-width: 760px) {
+  .tutorial-tracks { grid-template-columns: 1fr; }
   .tutorial-intro { grid-template-columns: 1fr; padding: 32px 26px; gap: 30px; }
   .tutorial-preview { max-width: 460px; transform: none; width: 100%; }
   .tutorial-intro h1 { font-size: 2.2rem; }
@@ -155,9 +156,6 @@
   .preview-body > strong { font-size: .95rem; }
   .tutorial-method { gap: 10px; font-size: .68rem; }
   .tutorial-tracks { gap: 8px; }
-  .tutorial-track { flex-wrap: wrap; }
-  .tutorial-track-copy { flex-basis: 100%; }
-  .tutorial-track-copy small { min-height: 2.8em; }
   .lesson-heading, .lesson-body { padding: 22px 19px; }
   .lesson-goals { padding: 16px; }
   .lesson-heading-meta { flex-wrap: wrap; gap: 8px; }

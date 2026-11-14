@@ -1,12 +1,12 @@
 import { lessonIds, tracks } from './tutorial-data.js';
 
 const storageKey = 'ax-edu-tutorials-v1';
-const emptyProgress = () => ({ claude: [], codex: [] });
+const emptyProgress = () => Object.fromEntries(Object.keys(tracks).map(track => [track, []]));
 
 export function resolveTutorial(hash) {
   const [track, lesson] = hash.replace(/^#/, '').split('/');
   return {
-    track: Object.hasOwn(tracks, track) ? track : 'claude',
+    track: Object.hasOwn(tracks, track) ? track : 'codex',
     lesson: lessonIds.includes(lesson) ? lesson : 'setup'
   };
 }

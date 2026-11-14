@@ -4,19 +4,20 @@
 
 ## 코딩 에이전트 실습실
 
-`/tutorials`는 로그인 없이 이용하는 Claude Code·Codex 튜토리얼입니다. 기존 Worker·정적 프런트엔드에 추가했으며 별도 Next.js 서버나 빌드 없이 실행됩니다. 홈의 ‘세 가지 도구, 하나의 목표’ 영역 오른쪽 사용법 링크와 로그인 후 기존 도구 사용법에서 접근할 수 있습니다. 별도 상단 메뉴는 추가하지 않습니다.
+`/tutorials`는 로그인 없이 이용하는 Codex·Claude Code·Gemini/Antigravity 튜토리얼입니다. 기존 Worker·정적 프런트엔드에 추가했으며 별도 Next.js 서버나 빌드 없이 실행됩니다. 홈의 ‘세 가지 도구, 하나의 목표’ 영역 오른쪽 사용법 링크와 로그인 후 기존 도구 사용법에서 접근할 수 있습니다. 별도 상단 메뉴는 추가하지 않습니다.
 
+- 도구와 홈 사용법 링크는 Codex → Claude Code → Antigravity 순서입니다. Antigravity 트랙은 Gemini 웹에서 기획하기와 Antigravity App에서 로컬 파일을 구현하는 작업을 구분합니다.
 - 각 도구에 설치, 기본 조작, 계획·구현·검증, MCP·스킬, 협업·반복 개선, 설정·보안, 업무 적용의 7개 실습이 있습니다.
 - 같은 `meetings.md`와 `actions.csv` 가상 자료로 회의 조치사항 보드를 만듭니다. 실습별 설명, 복사할 프롬프트, 실행 순서, 결과물과 확인 기준을 제공합니다.
 - 도구 전환은 현재 주제를 유지하며 `/tutorials#codex/workflow`처럼 직접 연결할 수 있습니다. 알 수 없는 도구·실습은 유효한 첫 실습으로 복구합니다.
 - 완료 표시는 이 브라우저의 localStorage에만 저장합니다. 계정 진도, 12주 PASS, 주차 해금과는 연결하지 않습니다. 실제 AI 실행·채점·외부 계정 연결은 이 페이지에서 수행하지 않습니다.
-- 본문은 2026-11-14에 확인한 OpenAI·Claude Code 공식 문서를 기준으로 새로 작성했으며 각 실습 하단에 출처를 제공합니다. 제품 버전·조직 설정에 따라 사용 가능한 기능이 다를 수 있습니다.
+- 본문은 2026-11-14에 확인한 OpenAI·Claude Code·Google 공식 문서를 기준으로 새로 작성했으며 각 실습 하단에 출처를 제공합니다. 제품 버전·조직 설정에 따라 사용 가능한 기능이 다를 수 있습니다.
 
 참고 페이지의 학습 방법(이해 → 실행 → 확인)과 주제 순서만 활용했습니다. 참고 사이트의 시각 디자인·브랜드·기관별 정책은 가져오지 않았습니다. 설치한 `ai-website-cloner-template/.agents/skills/clone-website/SKILL.md`의 조사·구현·브라우저 검증 흐름을 현재 앱 구조에 맞춰 적용했습니다.
 
-경로 매핑: 참고 자료 `conanssam.com/start/lab/`의 교육 순서 → `/tutorials#claude/{lesson}`; 같은 주제의 공식 Codex 문서 → `/tutorials#codex/{lesson}`. 원본의 섹션 6은 두 도구의 `security` 실습으로 대응합니다. UI는 기존 `/`의 네이비·오렌지 건설 AX 테마를 사용합니다.
+경로 매핑: 참고 자료 `conanssam.com/start/lab/`의 교육 순서 → `/tutorials#claude/{lesson}`; 같은 주제의 공식 Codex 문서 → `/tutorials#codex/{lesson}`, Google 공식 문서 → `/tutorials#antigravity/{lesson}`. 원본의 섹션 6은 세 도구의 `security` 실습으로 대응합니다. UI는 기존 `/`의 네이비·오렌지 건설 AX 테마를 사용합니다.
 
-콘텐츠는 `public/js/tutorials-claude.js`, `public/js/tutorials-codex.js`, 공통 목차는 `public/js/tutorial-data.js`에서 수정합니다. `npm test`는 공개 라우팅·콘텐츠 구조·진도·잘못된 입력 처리를 검사합니다. 브라우저 검증은 앱을 실행한 뒤 `PLAYWRIGHT_MODULE`에 설치된 Playwright 경로를 지정하고 `node tests/e2e/tutorials.mjs`로 실행합니다. `TUTORIAL_BASE_URL`로 서버 주소를 변경할 수 있습니다. 설치된 시스템 Chrome을 사용할 때는 `PLAYWRIGHT_CHANNEL=chrome`을 지정합니다.
+콘텐츠는 `public/js/tutorials-codex.js`, `public/js/tutorials-claude.js`, `public/js/tutorials-antigravity.js`, 공통 목차는 `public/js/tutorial-data.js`에서 수정합니다. `npm test`는 공개 라우팅·콘텐츠 구조·진도·잘못된 입력 처리를 검사합니다. 브라우저 검증은 앱을 실행한 뒤 `PLAYWRIGHT_MODULE`에 설치된 Playwright 경로를 지정하고 `node tests/e2e/tutorials.mjs`로 실행합니다. `TUTORIAL_BASE_URL`로 서버 주소를 변경할 수 있습니다. 설치된 시스템 Chrome을 사용할 때는 `PLAYWRIGHT_CHANNEL=chrome`을 지정합니다.
 
 ## 현재 구현
 

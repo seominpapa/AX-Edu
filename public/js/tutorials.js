@@ -39,7 +39,7 @@ function renderNavigation() {
       'aria-label': track.name, 'aria-pressed': state.track === id ? 'true' : 'false',
       onClick: () => { location.hash = `${id}/${state.lesson}`; }
     }, [
-      el('span', { class: 'tutorial-tool-mark', 'aria-hidden': 'true', text: id === 'claude' ? 'C' : '>_' }),
+      el('span', { class: 'tutorial-tool-mark', 'aria-hidden': 'true', text: id === 'codex' ? '>_' : id === 'claude' ? 'C' : 'A' }),
       el('span', { class: 'tutorial-track-copy' }, [el('strong', { text: track.name }), el('small', { text: track.description })]),
       el('span', { class: 'tutorial-track-count', text: `${progress[id].length} / 7 완료` })
     ]);
@@ -119,7 +119,11 @@ function renderLesson() {
   const pager = el('nav', { class: 'lesson-pager', 'aria-label': '이전 다음 실습' });
   if (index > 0) pager.append(el('a', { href: `#${state.track}/${lessonIds[index - 1]}`, text: `← ${lessonLabels[index - 1]}` }));
   if (index < lessonIds.length - 1) pager.append(el('a', { href: `#${state.track}/${lessonIds[index + 1]}`, text: `${lessonLabels[index + 1]} →` }));
-  else pager.append(el('a', { href: `#${state.track === 'claude' ? 'codex' : 'claude'}/setup`, text: '다른 도구로 시작하기 →' }));
+  else {
+    const ids = Object.keys(tracks);
+    const nextTrack = ids[(ids.indexOf(state.track) + 1) % ids.length];
+    pager.append(el('a', { href: `#${nextTrack}/setup`, text: '다른 도구로 시작하기 →' }));
+  }
   body.append(pager);
   root.append(heading, body);
   document.title = `${lessonLabels[index]} · ${track.name} 실습 · 건설인 AI Native`;
