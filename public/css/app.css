@@ -5,3 +5,10 @@
 .video-dialog{width:min(900px,calc(100% - 24px));max-width:calc(100% - 24px);max-height:90dvh;overflow:auto;border:1px solid var(--line);border-radius:16px;padding:20px;color:var(--dark);background:#fff}.video-dialog::backdrop{background:#0009}.video-dialog h2{min-width:0;overflow-wrap:anywhere;margin:0}.video-dialog iframe,.video-dialog video{display:block;width:100%;aspect-ratio:16/9;margin:18px 0;border:0;background:#000;border-radius:10px}.video-dialog video{max-height:65dvh}.columns>*{min-width:0}.content-text{overflow-wrap:anywhere}
 
 .card [hidden]{display:none!important}
+
+.toolkit{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;align-items:center}
+.toolkit-copy{min-width:0}.toolkit-guides{min-width:0;border-left:1px solid var(--line);padding-left:28px}
+.toolkit-guides h3{margin-bottom:8px;color:var(--dark)}.toolkit-guides p{font-size:.8rem;line-height:1.7;margin-bottom:16px}
+.toolkit-guides a{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:9px;padding:12px 15px;background:#fff;font-size:.9rem;font-weight:700;color:var(--dark)}
+.toolkit-guides a+a{margin-top:9px}.toolkit-guides a:hover{border-color:var(--green);color:var(--green)}.toolkit-guides a:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+@media(max-width:900px){.toolkit{grid-template-columns:1fr;gap:24px}.toolkit-guides{border-left:0;border-top:1px solid var(--line);padding:24px 0 0}}

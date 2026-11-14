@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko" data-theme="construction">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="건설인을 위한 Claude Code·Codex 실습 가이드. 설치부터 계획, 구현, 검증, 스킬과 협업까지 직접 따라 해 보세요.">
+  <title>코딩 에이전트 실습실 · 건설인 AI Native</title>
+  <link rel="icon" href="/images/ax-construction-logo.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="/css/construction.css">
+  <link rel="stylesheet" href="/css/tutorials.css">
+  <script type="module" src="/js/theme.js"></script>
+</head>
+<body class="tutorial-page">
+  <a class="skip-link" href="#lesson-content">실습 본문으로 건너뛰기</a>
+  <header class="site-header"><div class="shell header-inner">
+    <a class="brand" href="/" aria-label="건설인 AI Native 홈"><img class="brand-logo" src="/images/ax-construction-logo.jpg" alt="건설인 AX 생존지식 로고" width="42" height="42"><span>건설인 AI Native</span></a>
+    <nav class="nav" aria-label="메인 메뉴"><a href="/">프로그램 소개</a><a href="/dashboard">내 학습</a></nav>
+  </div></header>
+  <main class="shell">
+    <div class="tutorial-breadcrumb"><a href="/">홈</a><span aria-hidden="true">/</span><span>코딩 에이전트 실습실</span></div>
+    <section class="tutorial-intro" aria-labelledby="tutorial-title">
+      <div class="tutorial-intro-copy"><p class="eyebrow">FIELD GUIDE / CLAUDE CODE & CODEX</p><h1 id="tutorial-title">코딩 에이전트,<br>내 업무에 직접 써보기</h1><p>설치에서 끝나지 않습니다. 회의 메모를 조치사항 보드로 만들며<br class="desktop-break"> 계획하고, 구현하고, 확인하는 방법을 익힙니다.</p><a class="btn" href="#claude/setup" id="start-tutorial">첫 실습 시작하기 <span aria-hidden="true">↗</span></a><div class="tutorial-intro-meta"><span>2개 도구 · 각 7개 실습</span><span>가입 없이 시작</span></div></div>
+      <div class="tutorial-preview" aria-label="교육용 실습 결과물 예시">
+        <div class="preview-toolbar"><span class="preview-dots" aria-hidden="true">● ● ●</span><span>실습 결과물 예시</span><span aria-hidden="true">↗</span></div>
+        <div class="preview-body"><div class="preview-kicker">FIELD WORKSPACE</div><strong>회의 메모 → 조치사항 보드</strong><p>흩어진 메모를, 확인할 수 있는 결과물로.</p><div class="preview-action"><span class="preview-state pending">미착수</span><span>가설통로 정리<small>가설담당 · 11.17</small></span></div><div class="preview-action"><span class="preview-state review">확인 필요</span><span>반입 동선 도면 확인<small>공무담당 · 기한 미정</small></span></div><div class="preview-action"><span class="preview-state active">진행 중</span><span>양중 순서 협의<small>공사담당 · 11.18</small></span></div><div class="preview-foot">교육용 가상 자료 · 실제 현장 정보가 아닙니다.</div></div>
+      </div>
+    </section>
+    <div class="tutorial-method" aria-label="학습 방법"><span><b>01</b> 이해하기</span><i aria-hidden="true">→</i><span><b>02</b> 직접 실행하기</span><i aria-hidden="true">→</i><span><b>03</b> 결과 확인하기</span></div>
+    <section class="tutorial-workspace" aria-labelledby="track-title">
+      <div class="tutorial-section-heading"><div><p class="eyebrow">CHOOSE YOUR TOOL</p><h2 id="track-title">같은 실습, 두 가지 도구</h2><p class="muted">한 도구로 시작해도 좋습니다. 도구를 바꾸면 같은 주제를 이어서 볼 수 있습니다.</p></div><span class="tutorial-verified">공식 문서 확인 · 2026.11.14</span></div>
+      <div id="track-switch" class="tutorial-tracks" aria-label="학습 도구 선택"></div>
+      <div class="tutorial-layout">
+        <aside class="tutorial-sidebar" aria-label="실습 목차"><div class="tutorial-sidebar-heading"><strong>실습 로드맵</strong><span id="progress-count"></span></div><progress id="tutorial-progress" max="7" value="0" aria-label="현재 도구 학습 진도"></progress><nav id="lesson-nav" aria-label="실습 순서"></nav><div class="tutorial-downloads"><span class="eyebrow">PRACTICE FILES</span><strong>이 파일로 함께 실습해요</strong><p>실제 현장 정보가 없는 가상 자료입니다. 다운로드 후 같은 작업 폴더에 넣어 주세요.</p><a href="/tutorials/meetings.md" download="meetings.md">회의 메모 다운로드 <span aria-hidden="true">↓</span></a><a href="/tutorials/actions.csv" download="actions.csv">조치사항 CSV 다운로드 <span aria-hidden="true">↓</span></a></div><p class="tutorial-local-note">진도는 이 브라우저에만 저장됩니다.<br>12주 과정의 PASS·주차 해금과는 별개입니다.</p></aside>
+        <article id="lesson-content" class="tutorial-lesson" tabindex="-1" aria-label="선택한 실습"><p class="muted">실습 내용을 불러오는 중입니다.</p></article>
+      </div>
+    </section>
+    <p id="tutorial-status" class="tutorial-status" role="status" aria-live="polite" aria-atomic="true"></p>
+    <noscript><p class="notice">실습 목차와 프롬프트를 보려면 JavaScript를 켜 주세요. 연습 파일은 위 링크에서 다운로드할 수 있습니다.</p></noscript>
+  </main>
+  <footer class="foot">건설인 AI Native · 이해 → 실행 → 검증 → 내 업무에 적용</footer>
+  <script type="module" src="/js/tutorials.js"></script>
+</body>
+</html>

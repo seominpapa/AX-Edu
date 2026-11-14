@@ -273,6 +273,7 @@ export default { async fetch(req,env) {
     if(p.startsWith('/api/'))return await api(req,env,url,await actor(req,env));
     const protectedPages={'/admin':'/admin.html','/admin.html':'/admin.html','/dashboard':'/dashboard.html','/dashboard.html':'/dashboard.html','/week':'/week.html','/week.html':'/week.html','/assignment':'/assignment.html','/assignment.html':'/assignment.html'};
     if(protectedPages[p]){const u=await actor(req,env);if(!u)return Response.redirect(url.origin+'/login',302);if(p.startsWith('/admin')&&u.role!=='ADMIN')return error('FORBIDDEN','관리자 권한이 필요합니다.',403);if(!p.startsWith('/admin')&&p!=='/dashboard'&&p!=='/dashboard.html'&&u.status!=='APPROVED')return Response.redirect(url.origin+'/dashboard',302);return env.ASSETS.fetch(new Request(new URL(protectedPages[p],url.origin),req));}
+    if(p==='/tutorials'||p==='/tutorials/')return env.ASSETS.fetch(new Request(new URL('/tutorials.html',url.origin),req));
     if(p==='/login')return env.ASSETS.fetch(new Request(new URL('/login.html',url.origin),req));
     if(p==='/')return env.ASSETS.fetch(new Request(new URL('/index.html',url.origin),req));
     return env.ASSETS.fetch(req);
